@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="D:\EPAM\HW8\Book.cs">
-      <Link>Book.cs</Link>
-    </Compile>
+    <Compile Include="Book.cs" />
+    <Compile Include="ListBookService.cs" />
+    <Compile Include="ListBookStorage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
