@@ -8,24 +8,52 @@ namespace NEW.S._2018.Masarnouski._08
 {
    public class ListBookService
     {
-        ListBookStorage storage;
-        public ListBookService(ListBookStorage storage)
+        private List<Book> bookList = new List<Book>();
+        IBookListStorage storage;
+
+        public ListBookService(IBookListStorage storage)
         {
             this.storage = storage;
         }
+
+        public void ViewBooks()
+        {
+            foreach (var item in bookList)
+            {
+                Console.WriteLine($"{item.Isbn} {item.Name} {item.Author} {item.Publisher} {item.Price}");
+            }
+            Console.ReadLine();
+        }
         public void  AddBook(Book book)
         {
-            if (storage.bookList.Contains(book))
+            if (ReferenceEquals(book, null))
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
+            if (bookList.Contains(book))
                 throw new Exception("This book is alrady exists");
             else
-                storage.bookList.Add(book);
+                bookList.Add(book);
         }
         public void RemoveBook(Book book)
         {
-            if (storage.bookList.Contains(book))
-                storage.bookList.Remove(book);
+            if (ReferenceEquals(book, null))
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
+            if (bookList.Contains(book))
+                bookList.Remove(book);
             else
                 throw new Exception("This book is alrady exists");
+        }
+        public void LoadFromStorage(string path)
+        {
+            bookList.Clear();
+            bookList = storage.Load(path);
+        }
+        public void SaveToStorage(string path)
+        {
+            storage.Save(path, bookList);
         }
     }
 }

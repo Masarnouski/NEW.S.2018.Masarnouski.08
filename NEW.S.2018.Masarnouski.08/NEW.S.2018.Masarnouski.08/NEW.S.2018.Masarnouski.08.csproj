@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="Interfaces\IBookListStorage.cs" />
     <Compile Include="ListBookService.cs" />
     <Compile Include="ListBookStorage.cs" />
     <Compile Include="Program.cs" />
