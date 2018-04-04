@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="Comparators\Comparators.cs" />
+    <Compile Include="Finders\Finders.cs" />
     <Compile Include="Interfaces\IBookListStorage.cs" />
+    <Compile Include="Interfaces\IFinder.cs" />
     <Compile Include="ListBookService.cs" />
     <Compile Include="ListBookStorage.cs" />
     <Compile Include="Program.cs" />

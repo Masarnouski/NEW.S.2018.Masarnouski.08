@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NEW.S._2018.Masarnouski._08
 {
-    public class Book: IComparable, IEquatable<Book>
+    public class Book: IComparable<Book>, IEquatable<Book>
     {
         public string Isbn { get; set; }
         public string Name { get; set; }
@@ -50,11 +50,6 @@ namespace NEW.S._2018.Masarnouski._08
             return base.GetHashCode();
         }
 
-        public int CompareTo(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Equals(Book other)
         {
             if (ReferenceEquals(this, null) && !(ReferenceEquals(other, null)))
@@ -68,7 +63,20 @@ namespace NEW.S._2018.Masarnouski._08
 
             return this.Isbn == other.Isbn && this.Author == other.Author && this.Name == other.Name
                 && this.Year == other.Year && this.Publisher == other.Publisher &&
-               this.NumberOfPages == other.NumberOfPages;
+               this.NumberOfPages == other.NumberOfPages && this.Price == other.Price;
+        }
+
+        public int CompareTo(Book other)
+        {
+            if (ReferenceEquals(other, null))
+                throw new ArgumentNullException(nameof(other));
+
+            if (this.Price > other.Price)
+                return 1;
+            if (this.Price < other.Price)
+                return -1;
+            else
+                return 0;
         }
     }
 }

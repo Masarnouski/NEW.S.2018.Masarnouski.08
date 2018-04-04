@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NEW.S._2018.Masarnouski._08.Interfaces;
 
 namespace NEW.S._2018.Masarnouski._08
 {
@@ -51,9 +52,29 @@ namespace NEW.S._2018.Masarnouski._08
             bookList.Clear();
             bookList = storage.Load(path);
         }
+
         public void SaveToStorage(string path)
         {
             storage.Save(path, bookList);
         }
+
+        public void SortByTag(IComparer<Book> comparer)
+        {
+            if (ReferenceEquals(comparer, null))
+            {
+                throw new ArgumentNullException(nameof(comparer));
+            }
+            bookList.Sort(comparer);
+        }
+
+        public Book FindByTag(IFinder<Book> finder,string tag)
+        {
+            if (ReferenceEquals(finder, null))
+            {
+                throw new ArgumentNullException(nameof(finder));
+            }
+           return bookList.Find(finder.Find(tag));
+        }
+
     }
 }
