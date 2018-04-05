@@ -42,6 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bank\BankAccount.cs" />
+    <Compile Include="Bank\Factories\BinaryStorageFactory.cs" />
+    <Compile Include="Bank\Factories\IStorageFactory.cs" />
+    <Compile Include="Bank\Program.cs" />
+    <Compile Include="Bank\Servise\AccountService.cs" />
+    <Compile Include="Bank\Storage\IStorage.cs" />
+    <Compile Include="Bank\Storage\BinaryStorage.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="Comparators\Comparators.cs" />
     <Compile Include="Finders\Finders.cs" />
