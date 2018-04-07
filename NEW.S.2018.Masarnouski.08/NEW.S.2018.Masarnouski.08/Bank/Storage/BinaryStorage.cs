@@ -9,12 +9,35 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Storage
 {
     class BinaryStorage: IStorage
     {
-        public BinaryStorage()
+        string path;
+        public BinaryStorage(string path)
         {
-
+            this.path = path;
         }
 
-        public List<BankAccount> Load(string path)
+        public string Path
+        {
+            get
+            {
+                return this.path;
+            }
+
+            private set
+            {
+                if (value is null)
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
+                if (value == string.Empty)
+                {
+                    throw new ArithmeticException($"{nameof(value)} must be not empty");
+                }
+
+                this.path = value;
+            }
+        }
+        public List<BankAccount> Load()
         {
             using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
             using (var writer = new BinaryWriter(stream))
@@ -29,14 +52,15 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Storage
                     string holderSurName = reader.ReadString();
                     decimal balance = reader.ReadDecimal();
                     int bonus = reader.ReadInt32();
+                    AccountType type = (AccountType)reader.ReadInt32();
 
-                    LoadedAccountsList.Add(new BankAccount(id,balance,holderName,holderSurName,bonus));
+                    LoadedAccountsList.Add(new BankAccount(id,holderName,holderSurName,balance,type,bonus));
                 }
                 return LoadedAccountsList;
             }
         }
 
-        public void Save(string path, List<BankAccount> accountsList)
+        public void Save(List<BankAccount> accountsList)
         {
             using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
             {
@@ -49,6 +73,8 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Storage
                         writer.Write(account.HolderSurName);
                         writer.Write(account.Balance);
                         writer.Write(account.Bonus);
+                        writer.Write((int)account.Type);
+
                     }
                     writer.Flush();
                 }

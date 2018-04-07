@@ -43,8 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bank\BankAccount.cs" />
+    <Compile Include="Bank\BankAccountTypes.cs" />
+    <Compile Include="Bank\Counters\BonusCounter.cs" />
+    <Compile Include="Bank\Counters\IBonusCounter.cs" />
     <Compile Include="Bank\Factories\BinaryStorageFactory.cs" />
     <Compile Include="Bank\Factories\IStorageFactory.cs" />
+    <Compile Include="Bank\IBankAccount.cs" />
     <Compile Include="Bank\Program.cs" />
     <Compile Include="Bank\Servise\AccountService.cs" />
     <Compile Include="Bank\Storage\IStorage.cs" />

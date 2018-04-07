@@ -8,7 +8,7 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Storage
 {
     interface IStorage
     {
-        List<BankAccount> Load(string path);
-        void Save(string path, List<BankAccount> accountsList);
+        List<BankAccount> Load();
+        void Save(List<BankAccount> accountsList);
     }
 }

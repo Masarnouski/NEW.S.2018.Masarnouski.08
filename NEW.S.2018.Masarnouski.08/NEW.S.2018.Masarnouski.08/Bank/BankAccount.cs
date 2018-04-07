@@ -8,25 +8,57 @@ namespace NEW.S._2018.Masarnouski._08.Bank
 {
     class BankAccount
     {
+        #region fields
         private int id;
         private decimal balance;
         private string holderName;
         private string holderSurName;
-        private int bonus;
-        
-        public BankAccount(int id, decimal balance, string holderName, string holderSurName, int bonus)
+        int bonus;
+        AccountType type;
+        #endregion
+
+        #region Constructors
+        public BankAccount(int id,string holderName, string holderSurName)
         {
             this.id = id;
-            this.balance = balance;
             this.holderName = holderName;
             this.holderSurName = holderSurName;
-            this.bonus = bonus;
+            Type = 0;
+            Bonus = 0;
         }
+        public BankAccount(int id, string holderName, string holderSurName, decimal balance):this(id, holderName,holderSurName)
+        {
+            this.id = id;
+            this.holderName = holderName;
+            this.holderSurName = holderSurName;
+            this.balance = balance;
+        }
+        public BankAccount(int id, string holderName, string holderSurName, decimal balance, AccountType type) 
+        {
+            this.id = id;
+            this.holderName = holderName;
+            this.holderSurName = holderSurName;
+            this.balance = balance;
+            Type = type;
+        }
+        public BankAccount(int id, string holderName, string holderSurName, decimal balance, AccountType type, int bonus)
+        {
+            this.id = id;
+            this.holderName = holderName;
+            this.holderSurName = holderSurName;
+            this.balance = balance;
+            Type = type;
+            Bonus = bonus;
+        }
+        #endregion 
 
         #region Properties
+
+        public AccountType Type { get; set; }
+
         public int Id
         {
-             get { return this.id; }
+             get {return this.id; }
 
             set
             {
@@ -96,7 +128,7 @@ namespace NEW.S._2018.Masarnouski._08.Bank
         public int Bonus
         { get { return this.bonus; }
 
-            protected set
+            private set
             {
                 if (value < 0)
                 {
@@ -105,6 +137,26 @@ namespace NEW.S._2018.Masarnouski._08.Bank
 
                 this.bonus = value;
             }
+        }
+        #endregion
+
+        #region Methods
+
+        public void Fill(decimal amount)
+        {
+            if (amount < 0)
+            {
+                throw new ArgumentException("Amount to fill must be greater or equal to 0");
+            }
+            Balance += amount;
+        }
+        public void Withdraw(decimal amount)
+        {
+            if (amount < 0)
+            {
+                throw new ArgumentException("Amount to fill must be greater or equal to 0");
+            }
+            Balance -= amount;
         }
         #endregion
     }

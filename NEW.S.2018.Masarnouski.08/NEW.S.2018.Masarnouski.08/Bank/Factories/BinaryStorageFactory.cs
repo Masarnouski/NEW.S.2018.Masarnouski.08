@@ -11,7 +11,7 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Factories
     {
         public IStorage GetInstance()
         {
-            return new BinaryStorage();
+            return new BinaryStorage("BankAcoounts.dat");
         }
     }
 }
