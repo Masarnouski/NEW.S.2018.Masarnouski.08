@@ -67,7 +67,7 @@ namespace NEW.S._2018.Masarnouski._08
             bookList.Sort(comparer);
         }
 
-        public Book FindByTag(IFinder<Book> finder,string tag)
+        public Book FindByTag(IFinder<Book> finder,object tag)
         {
             if (ReferenceEquals(finder, null))
             {

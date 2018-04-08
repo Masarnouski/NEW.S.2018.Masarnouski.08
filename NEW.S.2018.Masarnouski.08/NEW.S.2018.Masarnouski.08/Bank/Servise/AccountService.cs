@@ -1,4 +1,5 @@
-﻿using NEW.S._2018.Masarnouski._08.Bank.Factories;
+﻿using NEW.S._2018.Masarnouski._08.Bank.Counters;
+using NEW.S._2018.Masarnouski._08.Bank.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Servise
     {
         private readonly List<BankAccount> accountsList;
         IStorageFactory storage;
-        public AccountService(IStorageFactory storage)
+        IBonusCounter bonusCounter;
+        public AccountService(IStorageFactory storage, IBonusCounter bonusCounter)
         {
             this.storage = storage;
+            this.bonusCounter = bonusCounter;
             accountsList = storage.GetInstance().Load();
         }
 
@@ -43,6 +46,20 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Servise
         }
         public void FillAccount(BankAccount account, decimal amount)
         {
+            if (amount < 0)
+            {
+                throw new ArgumentException("Amount to fill must be greater or equal to 0");
+            }
+            if (ReferenceEquals(account, null))
+            {
+                throw new ArgumentNullException(nameof(account));
+            }
+
+            if (!accountsList.Contains(account))
+            {
+                throw new ArgumentException("This bank account not found.");
+            }
+            account.SetBonus(bonusCounter.GetBonusFromWithdraw(account, amount));
             account.Fill(amount);
         }
         public void WithdrawAccount(BankAccount account, decimal amount)
@@ -60,8 +77,9 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Servise
             {
                 throw new ArgumentException("This bank account not found.");
             }
-
-            account.Withdraw(amount);
+          
+           account.SetBonus(bonusCounter.GetBonusFromWithdraw(account, amount));
+           account.Withdraw(amount);
         }
     }
 }

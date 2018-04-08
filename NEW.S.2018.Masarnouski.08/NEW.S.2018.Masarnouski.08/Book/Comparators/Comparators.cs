@@ -78,7 +78,7 @@ namespace NEW.S._2018.Masarnouski._08.Comparators
         }
     }
 
-    public class TagPriceSorrt : IComparer<Book>
+    public class TagPriceSort : IComparer<Book>
     {
         public int Compare(Book first, Book second)
         {

@@ -9,7 +9,7 @@ namespace NEW.S._2018.Masarnouski._08.Finders
 {
     class Finders
     {
-        public class FindISBN: IFinder<Book>
+        public class ISBNFind: IFinder<Book>
         {
             public Predicate<Book> Find(string otherISBN)
             {
@@ -33,6 +33,18 @@ namespace NEW.S._2018.Masarnouski._08.Finders
                 }
 
                 return delegate (Book book) { return book.Author == otherAuthor; };
+            }
+        }
+        public class PriceFind : IFinder<Book>
+        {
+            public Predicate<Book> Find(object otherAuthor)
+            {
+                if (ReferenceEquals(otherAuthor, null))
+                {
+                    throw new ArgumentNullException(nameof(otherAuthor));
+                }
+
+                return delegate (Book book) { return book.Price == (int)otherAuthor; };
             }
         }
     }

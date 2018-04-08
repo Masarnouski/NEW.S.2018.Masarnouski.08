@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 namespace NEW.S._2018.Masarnouski._08.Bank.Counters
 {
-    class BonusCounter : IBonusCounter
+    public class BonusCounter : IBonusCounter
     {
-        private BankAccount account;
-        public BonusCounter(BankAccount account)
-        {
-            this.account = account;
-        } 
     public decimal FillPrice { get; private set; }
 
     public decimal WithdrawPrice { get; private set; }
 
-        private void GetFillAmount(BankAccount account)
-        {
+            public void SetBonusPrice(BankAccount account)
+            {
             AccountType type = account.Type;
             switch (type)
             {
@@ -31,14 +26,14 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Counters
 
                 case AccountType.Gold:
                     {
-                        FillPrice = 10;
-                        WithdrawPrice = 8;
+                        FillPrice = 8;
+                        WithdrawPrice = 6;
                         break;
                     }
 
                 case AccountType.Premium:
                     {
-                        FillPrice = 10;
+                        FillPrice = 6;
                         WithdrawPrice = 8;
                         break;
                     }
@@ -50,12 +45,14 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Counters
         }
         public int GetBonusFromFill(BankAccount account, decimal amount)
         {
+            SetBonusPrice(account);
             decimal result = amount / FillPrice;
             return (int)result;
         }
 
         public int GetBonusFromWithdraw(BankAccount account, decimal amount)
         {
+            SetBonusPrice(account);
             decimal result = amount / WithdrawPrice;
             return (int)result;
         }

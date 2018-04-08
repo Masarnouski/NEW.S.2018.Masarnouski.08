@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NEW.S._2018.Masarnouski._08.Bank.Counters;
+using NEW.S._2018.Masarnouski._08.Bank.Factories;
+using NEW.S._2018.Masarnouski._08.Bank.Servise;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +11,20 @@ namespace NEW.S._2018.Masarnouski._08.Bank
 {
     class Program
     {
-        static void Main()
-        {
-            BankAccount account = new BankAccount(1, "Eugene", "Masarnouski", 100, AccountType.Base);
-            BankAccount account2 = new BankAccount(1, "Alesya", "Dzehachova", 200, AccountType.Premium);
-        }
+        //static void Main()
+        //{
+        //    BankAccount account1 = new BankAccount(1, "Eugene", "Masarnouski", 100, AccountType.Base);
+        //    BankAccount account2 = new BankAccount(1, "Alesya", "Dzehachova", 200, AccountType.Gold);
+        //    var counter = new BonusCounter();
+        //    var storageFactory = new BinaryStorageFactory(); 
+        //    AccountService service = new AccountService(storageFactory,counter);
+        //    service.AddAccount(account1);
+        //    service.AddAccount(account2);
+        //    service.FillAccount(account1, 35);
+        //    service.FillAccount(account2, 20);
+        //    Console.WriteLine($"{account1.HolderName}, {account1.HolderSurName}, {account1.Bonus}, {account1.Balance}");
+        //    Console.WriteLine($"{account2.HolderName}, {account2.HolderSurName}, {account2.Bonus}, {account2.Balance}");
+        //    Console.ReadLine();
+        //}
     }
 }

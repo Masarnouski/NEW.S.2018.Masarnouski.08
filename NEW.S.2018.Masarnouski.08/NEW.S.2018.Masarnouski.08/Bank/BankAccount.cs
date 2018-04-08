@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NEW.S._2018.Masarnouski._08.Bank
 {
-    class BankAccount
+    public class BankAccount
     {
         #region fields
         private int id;
@@ -141,6 +141,16 @@ namespace NEW.S._2018.Masarnouski._08.Bank
         #endregion
 
         #region Methods
+
+        public void SetBonus(int bonus)
+        {
+            if (bonus < 0)
+            {
+                throw new ArgumentOutOfRangeException($"Bonus{nameof(bonus)} must be greater than 0.");
+            }
+
+            Bonus += bonus;
+        }
 
         public void Fill(decimal amount)
         {
