@@ -9,8 +9,8 @@ namespace NEW.S._2018.Masarnouski._08
 {
     public interface IBookListStorage
     {
-        List<Book> Load(string path);
-        void Save(string path, List<Book> bookList);
+        List<Book> Load();
+        void Save(List<Book> bookList);
 
     }
 }

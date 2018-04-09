@@ -47,15 +47,15 @@ namespace NEW.S._2018.Masarnouski._08
             else
                 throw new Exception("This book is alrady exists");
         }
-        public void LoadFromStorage(string path)
+        public void LoadFromStorage()
         {
             bookList.Clear();
-            bookList = storage.Load(path);
+            bookList = storage.Load();
         }
 
-        public void SaveToStorage(string path)
+        public void SaveToStorage()
         {
-            storage.Save(path, bookList);
+            storage.Save(bookList);
         }
 
         public void SortByTag(IComparer<Book> comparer)

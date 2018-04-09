@@ -8,6 +8,6 @@ namespace NEW.S._2018.Masarnouski._08.Interfaces
 {
     public interface IFinder<Book>
     {
-        Predicate<Book> Find(string other);
+        Predicate<Book> Find(object other);
     }
 }

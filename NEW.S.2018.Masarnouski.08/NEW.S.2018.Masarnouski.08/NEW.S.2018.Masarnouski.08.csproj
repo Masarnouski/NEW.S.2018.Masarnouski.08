@@ -48,7 +48,6 @@
     <Compile Include="Bank\Counters\IBonusCounter.cs" />
     <Compile Include="Bank\Factories\BinaryStorageFactory.cs" />
     <Compile Include="Bank\Factories\IStorageFactory.cs" />
-    <Compile Include="Bank\IBankAccount.cs" />
     <Compile Include="Bank\Program.cs" />
     <Compile Include="Bank\Servise\AccountService.cs" />
     <Compile Include="Bank\Storage\IStorage.cs" />
@@ -62,9 +61,6 @@
     <Compile Include="Book\Storage\ListBookStorage.cs" />
     <Compile Include="Book\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

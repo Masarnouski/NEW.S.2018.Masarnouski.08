@@ -30,7 +30,6 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Servise
                 throw new Exception("This account is alrady exists");
             else
                 accountsList.Add(account);
-            storage.GetInstance().Save(accountsList);
         }
 
         public void RemoveAccount(BankAccount account)
@@ -40,7 +39,10 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Servise
                 throw new ArgumentNullException(nameof(account));
             }
             if (accountsList.Contains(account))
+            {
                 accountsList.Remove(account);
+                storage.GetInstance().Save(accountsList);
+            }
             else
                 throw new Exception("This account is alrady exists");
         }
@@ -81,5 +83,15 @@ namespace NEW.S._2018.Masarnouski._08.Bank.Servise
            account.SetBonus(bonusCounter.GetBonusFromWithdraw(account, amount));
            account.Withdraw(amount);
         }
+        public void LoadFromStorage()
+        {
+            storage.GetInstance().Load();
+        }
+
+        public void SaveToStorage()
+        {
+            storage.GetInstance().Save(accountsList);
+        }
+
     }
 }

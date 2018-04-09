@@ -9,7 +9,12 @@ namespace NEW.S._2018.Masarnouski._08
 {
     public class ListBookStorage : IBookListStorage
     {
-        public void Save(string path, List<Book> bookList)
+        string path;
+        public ListBookStorage(string path)
+        {
+            this.path = path;
+        }
+        public void Save(List<Book> bookList)
         {
             using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
             {
@@ -30,7 +35,7 @@ namespace NEW.S._2018.Masarnouski._08
             } 
         }
     
-        public List<Book> Load(string path)
+        public List<Book> Load()
         {
             using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))
             using (var writer = new BinaryWriter(stream))

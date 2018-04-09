@@ -14,22 +14,25 @@ namespace NEW.S._2018.Masarnouski._08
     {
         static void Main(string[] args)
         {
-            ListBookService service = new ListBookService(new ListBookStorage());
             string path = @"D:\EPAM\HW8\NEW.S.2018.Masarnouski.08\NEW.S.2018.Masarnouski.08\BooksListNew.dat";
-            Book book1 = new Book("ISBN 954-32-54532-2-423", "CLR via C#", "Alesya", "", 2006, 300, 200);
-            Book book2 = new Book("ISBN 954-32-54532-2-423", "CLR via C#2", "Inna", "", 2006, 300, 500);
-            Book book3 = new Book("ISBN 954-32-54532-2-423", "CLR via C#3", "Jenya", "", 2006, 300, 100);
+            ListBookService service = new ListBookService(new ListBookStorage(path));
+            Book book1 = new Book("ISBN 978-2-93286-181-3", "CLR via C#", "Alesya", "Eversev",2005, 20, 200);
+            Book book2 = new Book("ISBN 978-5-93286-181-3", "CLR via C#2", "Inna", "Eversev", 2006, 200, 200);
+            Book book3 = new Book("ISBN 978-4-93286-181-3", "CLR via C#3", "Jenya", "Eversev", 2006, 100, 100);
+
             service.AddBook(book1);
             service.AddBook(book2);
             service.AddBook(book3);
-            service.ViewBooks();
+
             TagPriceSort authorSort = new TagPriceSort();
             service.SortByTag(authorSort);
-            service.ViewBooks();
-            //AuthorFind finder = new AuthorFind();
-            //Book book = service.FindByTag(finder, "Jenya");
-            //Console.WriteLine(book.Author + " "+ book.Isbn+" " + book.Name+ " " + book.Price);
-            //Console.ReadLine();
+
+
+            PriceFind finder = new PriceFind();
+            Book book = service.FindByTag(finder, 200);
+
+            service.SaveToStorage();
+            service.LoadFromStorage();
         }
 }
 }
