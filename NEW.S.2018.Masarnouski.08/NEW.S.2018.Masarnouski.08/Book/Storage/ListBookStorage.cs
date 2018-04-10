@@ -10,20 +10,27 @@ namespace NEW.S._2018.Masarnouski._08
     public class ListBookStorage : IBookListStorage
     {
         string path;
+
+        /// <summary>
+        /// The path to storage
+        /// </summary>
         public string Path { get { return this.path; }
             set
             {
                 if (ReferenceEquals(value, null))
-                {
                     throw new ArgumentNullException($"{nameof(value)}");
-                }
 
                 if (value == string.Empty)
-                {
                     throw new ArgumentException($"{nameof(value)} must be not empty");
-                }
+
+                this.path = value;
             }
         }
+
+        /// <summary>
+        /// Saves list of books to storage
+        /// </summary>
+        /// <param name="path">The path to storage</param>
         public ListBookStorage(string path)
         {
             this.Path = path;
@@ -48,7 +55,10 @@ namespace NEW.S._2018.Masarnouski._08
                 }
             } 
         }
-    
+    /// <summary>
+    /// Liads list of books from storage
+    /// </summary>
+    /// <returns> List of book </returns>
         public List<Book> Load()
         {
             using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate))

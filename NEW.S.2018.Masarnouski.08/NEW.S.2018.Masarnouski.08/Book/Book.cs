@@ -21,19 +21,27 @@ namespace NEW.S._2018.Masarnouski._08
         int numberOfPages;
         decimal price;
         #endregion
-    
+
         #region Properties
+        /// <summary>
+        /// The international standard number
+        /// </summary>
         public string Isbn
         { 
-
             get { return isbn; }
-            set {
+            set
+            {
                 Regex regex = new Regex(reg);
                 if (regex.IsMatch(value))
                     isbn = value;
                 else
                     throw new ArgumentException($"{nameof(value)} have wrong format");
-            } }
+            }
+        }
+
+        /// <summary>
+        /// The title of the book
+        /// </summary>
         public string Name
         {
             get { return this.name; }
@@ -53,6 +61,10 @@ namespace NEW.S._2018.Masarnouski._08
                 this.name = value;
             }
         }
+
+        /// <summary>
+        ///  The author of book
+        /// </summary>
         public string Author
         {
             get { return this.author; }
@@ -72,6 +84,10 @@ namespace NEW.S._2018.Masarnouski._08
                 this.author = value;
             }
         }
+
+        /// <summary>
+        /// The publisher of book
+        /// </summary>
         public string Publisher
         {
             get { return this.publisher; }
@@ -91,6 +107,10 @@ namespace NEW.S._2018.Masarnouski._08
                 this.publisher = value;
             }
         }
+
+        /// <summary>
+        /// The year of publishing 
+        /// </summary>
         public int Year {
             get { return this.year; }
             set
@@ -105,6 +125,10 @@ namespace NEW.S._2018.Masarnouski._08
                     year = value;
             }
         }
+
+        /// <summary>
+        /// Amount of pages
+        /// </summary>
         public int NumberOfPages
             {
             get { return numberOfPages; }
@@ -116,6 +140,10 @@ namespace NEW.S._2018.Masarnouski._08
                 numberOfPages = value;
             }
         }
+
+        /// <summary>
+        ///  The price of book 
+        /// </summary>
         public decimal Price
         {
             get { return price; }
@@ -126,6 +154,7 @@ namespace NEW.S._2018.Masarnouski._08
                 price = value;
             }
         }
+
         #endregion
         /// <summary>
         /// Initialize a new Book
