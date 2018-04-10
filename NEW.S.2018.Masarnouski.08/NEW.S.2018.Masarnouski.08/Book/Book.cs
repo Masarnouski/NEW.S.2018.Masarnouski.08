@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace NEW.S._2018.Masarnouski._08
 {
-    public class Book: IComparable<Book>, IEquatable<Book>
+    public class Book:IComparable, IComparable<Book>, IEquatable<Book>
     {
+        const string reg = "^(?:ISBN(?:-1[03])?:? )?(?=[-0-9 ]{17}$|[-0-9X ]{13}$|[0-9X]" +
+    "{10}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?(?:[0-9]+[- ]?){2}[0-9X]$";
+
         #region fields
         string isbn;
         string name;
@@ -18,15 +21,13 @@ namespace NEW.S._2018.Masarnouski._08
         int numberOfPages;
         decimal price;
         #endregion
-
+    
         #region Properties
         public string Isbn
         { 
 
             get { return isbn; }
             set {
-                string reg = "^(?:ISBN(?:-1[03])?:? )?(?=[-0-9 ]{17}$|[-0-9X ]{13}$|[0-9X]" +
-     "{10}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?(?:[0-9]+[- ]?){2}[0-9X]$";
                 Regex regex = new Regex(reg);
                 if (regex.IsMatch(value))
                     isbn = value;
@@ -95,6 +96,7 @@ namespace NEW.S._2018.Masarnouski._08
             set
             {
                 if (value < 0)
+
                     throw new ArgumentException($"{nameof(value)} must be greater then 0");
                 if (value.ToString().Length > 4)
                 {
@@ -147,70 +149,77 @@ namespace NEW.S._2018.Masarnouski._08
 
         }
         /// <summary>
-        /// Compares books
+        /// Compares current book with <paramref name="other"/> book>
         /// </summary>
-        /// <param name="obj"> the book to compare with</param>
-        /// <returns> true if the "obj" is equal to the current object instance; otherwise, false.</returns>
+        /// <param name="other"> The book to compare with </param>
+        /// <returns> True if books are aqual, otherwise, false </returns>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(this, null) && !(ReferenceEquals(obj, null)))
+            if (ReferenceEquals(obj, null))
                 return false;
 
-            if(ReferenceEquals(obj, null) && !(ReferenceEquals(this, null)))
-                return false;
-
-            if (ReferenceEquals(this, obj))
-                return true;
-
-            if (!(obj is Book))
-                throw new ArgumentException($"Argument {nameof(obj)} must have type Book");
+            if (this.GetType() != obj.GetType())
+                throw new ArgumentException($"{nameof(obj)} must have wrong type");
 
             return Equals((Book)obj);
         }
         /// <summary>
-        /// coverts book to a HashCode
+        /// Coverts book to a hashcode
         /// </summary>
-        /// <returns> numeric representation of an object </returns>
+        /// <returns> Numeric representation of current book </returns>
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
         }
+
         /// <summary>
-        /// Compares books
+        /// Compares current book with <paramref name="other"/> book>
         /// </summary>
-        /// <param name="other"> the book to compare with</param>
-        /// <returns> true if the "oter" is equal to the current object instance; otherwise, false.</returns>
+        /// <param name="other"> The book to compare with </param>
+        /// <returns> True if books are aqual, otherwise, false </returns>
         public bool Equals(Book other)
         {
-            if (ReferenceEquals(this, null) && !(ReferenceEquals(other, null)))
+            if (ReferenceEquals(other, null))
                 return false;
-
-            if (ReferenceEquals(other, null) && !(ReferenceEquals(this, null)))
-                return false;
-
-            if (ReferenceEquals(this, other))
-                return true;
 
             return this.Isbn == other.Isbn && this.Author == other.Author && this.Name == other.Name
                 && this.Year == other.Year && this.Publisher == other.Publisher &&
                this.NumberOfPages == other.NumberOfPages && this.Price == other.Price;
         }
+
+        /// <summary>
+        /// Conpares <paramref name="firstBook"/> and <paramref name="secondBook"/>.
+        /// </summary>
+        /// <param name="firstBook">A first book.</param>
+        /// <param name="secondBook">A second book.</param>
+        /// <returns> True if books are equal, otherwise, false </returns>
+        public static bool operator ==(Book firstBook, Book secondBook)
+        {
+            return firstBook.Equals(secondBook);
+        }
+
+        /// <summary>
+        /// Conpares <paramref name="firstBook"/> and <paramref name="secondBook"/>.
+        /// </summary>
+        /// <param name="firstBook">A first book.</param>
+        /// <param name="secondBook">A second book.</param>
+        /// <returns> False if books are equal, otherwise, true </returns>
+        public static bool operator !=(Book firstBook, Book secondBook)
+        {
+            return !firstBook.Equals(secondBook);
+        }
+
         /// <summary>
         /// Compares books by price
         /// </summary>
-        /// <param name="other">book to compare with</param>
-        /// <returns> if this current instance book > other: 1, if equal : 0 , if less : -1 </returns>
+        /// <param name="other">Book to compare with</param>
+        /// <returns> If the current instance book greater <paramref name="other"/>: 1, if equal : 0 , if less : -1 </returns>
         public int CompareTo(Book other)
         {
             if (ReferenceEquals(other, null))
-                throw new ArgumentNullException(nameof(other));
-
-            if (this.Price > other.Price)
                 return 1;
-            if (this.Price < other.Price)
-                return -1;
-            else
-                return 0;
+
+            return this.Price.CompareTo(other.Price);
         }
         /// <summary>
         /// Converts book to string representation.
@@ -221,5 +230,24 @@ namespace NEW.S._2018.Masarnouski._08
                 $" Price - {Price} \n Pages - {NumberOfPages}";
         }
 
+        /// <summary>
+        /// Compares books by price
+        /// </summary>
+        /// <param name="obj">Book to compare with</param>
+        /// <returns> If the current instance book greater <paramref name="obj"/>: 1, if equal : 0 , if less : -1 </returns>
+        public int CompareTo(object obj)
+        {
+            if (ReferenceEquals(obj, null))
+            {
+                return 1;
+            }
+
+            if (this.GetType() != obj.GetType())
+            {
+                throw new ArgumentException("Arqument is not a book", nameof(obj));
+            }
+
+            return this.CompareTo((Book)obj);
+        }
     }
 }

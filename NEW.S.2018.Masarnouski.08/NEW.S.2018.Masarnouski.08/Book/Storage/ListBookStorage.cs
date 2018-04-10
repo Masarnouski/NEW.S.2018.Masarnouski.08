@@ -10,9 +10,23 @@ namespace NEW.S._2018.Masarnouski._08
     public class ListBookStorage : IBookListStorage
     {
         string path;
+        public string Path { get { return this.path; }
+            set
+            {
+                if (ReferenceEquals(value, null))
+                {
+                    throw new ArgumentNullException($"{nameof(value)}");
+                }
+
+                if (value == string.Empty)
+                {
+                    throw new ArgumentException($"{nameof(value)} must be not empty");
+                }
+            }
+        }
         public ListBookStorage(string path)
         {
-            this.path = path;
+            this.Path = path;
         }
         public void Save(List<Book> bookList)
         {

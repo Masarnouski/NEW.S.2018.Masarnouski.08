@@ -11,6 +11,5 @@ namespace NEW.S._2018.Masarnouski._08
     {
         List<Book> Load();
         void Save(List<Book> bookList);
-
     }
 }
