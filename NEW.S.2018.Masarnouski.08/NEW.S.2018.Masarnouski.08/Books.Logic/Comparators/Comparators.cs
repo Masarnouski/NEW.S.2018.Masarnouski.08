@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEW.S._2018.Masarnouski._08.Comparators
+namespace NEW.S._2018.Masarnouski._08.Books.Logic.Comparators
 {
     public class TagISBNSort : IComparer<Book>
     {

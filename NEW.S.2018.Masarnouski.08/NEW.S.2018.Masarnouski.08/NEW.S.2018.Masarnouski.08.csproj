@@ -52,14 +52,15 @@
     <Compile Include="Bank\Servise\AccountService.cs" />
     <Compile Include="Bank\Storage\IStorage.cs" />
     <Compile Include="Bank\Storage\BinaryStorage.cs" />
-    <Compile Include="Book\Book.cs" />
-    <Compile Include="Book\Comparators\Comparators.cs" />
-    <Compile Include="Book\Finders\Finders.cs" />
-    <Compile Include="Book\Storage\IBookListStorage.cs" />
-    <Compile Include="Book\Finders\IFinder.cs" />
-    <Compile Include="Book\Service\ListBookService.cs" />
-    <Compile Include="Book\Storage\ListBookStorage.cs" />
-    <Compile Include="Book\Program.cs" />
+    <Compile Include="Books.Logic\Book.cs" />
+    <Compile Include="Books.Logic\Comparators\Comparators.cs" />
+    <Compile Include="Books.Logic\CustomBookFormat.cs" />
+    <Compile Include="Books.Logic\Finders\Finders.cs" />
+    <Compile Include="Books.Logic\Storage\IBookListStorage.cs" />
+    <Compile Include="Books.Logic\Finders\IFinder.cs" />
+    <Compile Include="Books.Logic\Service\ListBookService.cs" />
+    <Compile Include="Books.Logic\Storage\ListBookStorage.cs" />
+    <Compile Include="Books.Logic\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

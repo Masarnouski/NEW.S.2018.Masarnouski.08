@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NEW.S._2018.Masarnouski._08
+namespace NEW.S._2018.Masarnouski._08.Books.Logic.Storage
 {
     public class ListBookStorage : IBookListStorage
     {

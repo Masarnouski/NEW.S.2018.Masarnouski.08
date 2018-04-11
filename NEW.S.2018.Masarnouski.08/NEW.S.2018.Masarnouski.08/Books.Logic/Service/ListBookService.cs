@@ -1,11 +1,12 @@
-﻿using System;
+﻿using NEW.S._2018.Masarnouski._08.Books.Logic.Finders;
+using NEW.S._2018.Masarnouski._08.Books.Logic.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NEW.S._2018.Masarnouski._08.Interfaces;
 
-namespace NEW.S._2018.Masarnouski._08
+namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
 {
    public class ListBookService
     {

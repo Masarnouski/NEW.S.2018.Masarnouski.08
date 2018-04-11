@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace NEW.S._2018.Masarnouski._08
+namespace NEW.S._2018.Masarnouski._08.Books.Logic
 {
     public class Book:IComparable, IComparable<Book>, IEquatable<Book>
     {
@@ -277,6 +277,37 @@ namespace NEW.S._2018.Masarnouski._08
             }
 
             return this.CompareTo((Book)obj);
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (string.IsNullOrEmpty(format))
+            {
+                format = "IATPYCP";
+            }
+
+            if (formatProvider == null)
+            {
+                formatProvider = CultureInfo.CurrentCulture;
+            }
+
+            switch (format.ToUpperInvariant())
+            {
+                case "IATPYCP":
+                    return $"{this.Isbn}. {this.Author} - {this.Name}, {this.Publisher}, {this.YearOfPublishing}, {this.Count} pages, {this.Price.ToString("C", formatProvider)}";
+                case "IATPYC":
+                    return $"{this.ISBN}. {this.Author} - {this.Title}, {this.Publisher}, {this.YearOfPublishing}, {this.Count} pages";
+                case "IATPY":
+                    return $"{this.ISBN}. {this.Author} - {this.Title}, {this.Publisher}, {this.YearOfPublishing}";
+                case "IATP":
+                    return $"{this.ISBN}. {this.Author} - {this.Title}, {this.Publisher}";
+                case "IAT":
+                    return $"{this.ISBN}. {this.Author} - {this.Title}";
+                case "AT":
+                    return $"{this.Author} - {this.Title}";
+            }
+
+            throw new FormatException($"{format} is not supported");
         }
     }
 }
