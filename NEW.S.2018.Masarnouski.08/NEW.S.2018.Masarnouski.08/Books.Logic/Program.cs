@@ -22,6 +22,14 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
             Book book2 = new Book("ISBN 978-5-93286-181-3", "CLR via C#2", "Inna", "Eversev", 2006, 200, 200);
             Book book3 = new Book("ISBN 978-4-93286-181-3", "CLR via C#3", "Jenya", "Eversev", 2006, 100, 100);
 
+
+            log.Trace("trace message");
+            log.Debug("debug message");
+            log.Info("info message");
+            log.Warn("warn message");
+            log.Error("error message");
+            log.Fatal("fatal message");
+
             service.AddBook(book1);
             service.AddBook(book2);
             service.AddBook(book3);

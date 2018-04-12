@@ -2,14 +2,13 @@
 using NEW.S._2018.Masarnouski._08.Books.Logic.Storage;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NLog;
 
 namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
 {
    public class ListBookService
     {
+        Logger logger = LogManager.GetCurrentClassLogger();
         private List<Book> bookList = new List<Book>();
 
         IBookListStorage storage;
@@ -45,7 +44,10 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
             if (bookList.Contains(book))
                 throw new Exception("This book is alrady exists");
             else
+            {
                 bookList.Add(book);
+                logger.Info($"The book {book.Name} has been added");
+            }
         }
         /// <summary>
         /// Remove Book from collection, if exists
