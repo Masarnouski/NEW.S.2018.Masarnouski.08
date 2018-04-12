@@ -8,7 +8,6 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
 {
    public class ListBookService
     {
-        Logger logger = LogManager.GetCurrentClassLogger();
         private List<Book> bookList = new List<Book>();
 
         IBookListStorage storage;
@@ -46,7 +45,6 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
             else
             {
                 bookList.Add(book);
-                logger.Info($"The book {book.Name} has been added");
             }
         }
         /// <summary>
