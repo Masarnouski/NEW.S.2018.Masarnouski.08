@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace NEW.S._2018.Masarnouski._08.Books.Logic
 {
-    class CustomBookFormat : IFormatProvider, ICustomFormatter
+   public class CustomBookFormat : IFormatProvider, ICustomFormatter
     {
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
-            if (arg is Book && format == "INAPYNpP")
+            if (arg is Book && format == "Custom")
             {
                 var book = (Book)arg;
-                return $"CustomBookFormat Representation {book.Isbn}. {book.Name} - {book.Author}, {book.Publisher}, {book.Year}," +
+                return $"CustomBookFormat Representation {book.Isbn}, {book.Author} - {book.Name}, {book.Publisher}, {book.Year}," +
                    $" {book.NumberOfPages} pages, {book.Price.ToString("C")}";
             }
             else

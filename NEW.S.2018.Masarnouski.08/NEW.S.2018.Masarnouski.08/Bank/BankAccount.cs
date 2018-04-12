@@ -14,7 +14,7 @@ namespace NEW.S._2018.Masarnouski._08.Bank
         private string holderName;
         private string holderSurName;
         int bonus;
-        AccountType type;
+
         #endregion
 
         #region Constructors

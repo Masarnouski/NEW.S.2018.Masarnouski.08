@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,9 +26,13 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
             service.AddBook(book2);
             service.AddBook(book3);
 
-
-            Console.WriteLine(String.Format(new CustomBookFormat(), "My representation : {0}", 55));
+            CultureInfo culture = new CultureInfo("en-US");
+            Console.WriteLine(book1.ToString("IANPYNP", culture));
+            Console.WriteLine(String.Format(new CustomBookFormat(), "My representation : {0}", book1));
             Console.ReadLine();
+
+
+
             //TagPriceSort authorSort = new TagPriceSort();
             //service.SortByTag(authorSort);
 

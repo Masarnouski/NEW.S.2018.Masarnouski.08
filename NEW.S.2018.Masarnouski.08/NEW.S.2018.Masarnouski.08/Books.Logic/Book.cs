@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NEW.S._2018.Masarnouski._08.Books.Logic
 {
-    public class Book:IComparable, IComparable<Book>, IEquatable<Book>
+    public class Book:IComparable, IComparable<Book>, IEquatable<Book> ,IFormattable
     {
         const string reg = "^(?:ISBN(?:-1[03])?:? )?(?=[-0-9 ]{17}$|[-0-9X ]{13}$|[0-9X]" +
     "{10}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?(?:[0-9]+[- ]?){2}[0-9X]$";
@@ -283,7 +284,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
         {
             if (string.IsNullOrEmpty(format))
             {
-                format = "IATPYCP";
+                format = "IANPYNP";
             }
 
             if (formatProvider == null)
@@ -293,18 +294,18 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
 
             switch (format.ToUpperInvariant())
             {
-                case "IATPYCP":
-                    return $"{this.Isbn}. {this.Author} - {this.Name}, {this.Publisher}, {this.YearOfPublishing}, {this.Count} pages, {this.Price.ToString("C", formatProvider)}";
-                case "IATPYC":
-                    return $"{this.ISBN}. {this.Author} - {this.Title}, {this.Publisher}, {this.YearOfPublishing}, {this.Count} pages";
-                case "IATPY":
-                    return $"{this.ISBN}. {this.Author} - {this.Title}, {this.Publisher}, {this.YearOfPublishing}";
-                case "IATP":
-                    return $"{this.ISBN}. {this.Author} - {this.Title}, {this.Publisher}";
-                case "IAT":
-                    return $"{this.ISBN}. {this.Author} - {this.Title}";
-                case "AT":
-                    return $"{this.Author} - {this.Title}";
+                case "IANPYNP":
+                    return $"{this.Isbn}, {this.Author} - {this.Name}, {this.Publisher}, {this.Year}, {this.NumberOfPages} pages, {this.Price.ToString("C",formatProvider)}";
+                case "IANPYN":
+                    return $"{this.Isbn}, {this.Author} - {this.Name}, {this.Publisher}, {this.Year}, {this.NumberOfPages} pages";
+                case "IANPY":
+                    return $"{this.Isbn}, {this.Author} - {this.Name}, {this.Publisher}, {this.Year}";
+                case "IANP":
+                    return $"{this.Isbn}, {this.Author} - {this.Name}, {this.Publisher}";
+                case "IAN":
+                    return $"{this.Isbn}, {this.Author} - {this.Name}";
+                case "IA":
+                    return $"{this.Isbn}, {this.Author}";
             }
 
             throw new FormatException($"{format} is not supported");

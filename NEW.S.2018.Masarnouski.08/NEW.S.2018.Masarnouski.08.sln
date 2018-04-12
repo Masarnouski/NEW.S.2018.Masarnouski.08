@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEW.S.2018.Masarnouski.08", "NEW.S.2018.Masarnouski.08\NEW.S.2018.Masarnouski.08.csproj", "{91A5FE99-0809-4693-A75B-D5AADF9C670B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Logic.Tests", "Books.Logic.Tests\Books.Logic.Tests.csproj", "{50BD0EDB-7FE6-4A2B-86F3-D9045188C47F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{91A5FE99-0809-4693-A75B-D5AADF9C670B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91A5FE99-0809-4693-A75B-D5AADF9C670B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91A5FE99-0809-4693-A75B-D5AADF9C670B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50BD0EDB-7FE6-4A2B-86F3-D9045188C47F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50BD0EDB-7FE6-4A2B-86F3-D9045188C47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50BD0EDB-7FE6-4A2B-86F3-D9045188C47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50BD0EDB-7FE6-4A2B-86F3-D9045188C47F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
