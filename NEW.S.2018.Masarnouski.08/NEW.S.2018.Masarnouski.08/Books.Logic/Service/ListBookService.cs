@@ -9,7 +9,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
    public class ListBookService
     {
         private List<Book> bookList = new List<Book>();
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         IBookListStorage storage;
         /// <summary>
         /// Initialize service with storage
@@ -18,6 +18,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
         public ListBookService(IBookListStorage storage)
         {
             this.storage = storage;
+            logger.Info($"Service with storage {storage} has successfully created");
         }
         /// <summary>
         /// Show the list of books
@@ -45,6 +46,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
             else
             {
                 bookList.Add(book);
+                logger.Info($"Book {book.Name} succesfully added");
             }
         }
         /// <summary>
@@ -58,7 +60,10 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
                 throw new ArgumentNullException(nameof(book));
             }
             if (bookList.Contains(book))
+            {
                 bookList.Remove(book);
+                logger.Info($"Book {book.Name} succesfully removed");
+            }
             else
                 throw new Exception("This book is alrady exists");
         }
@@ -69,6 +74,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
         {
             bookList.Clear();
             bookList = storage.Load();
+            logger.Info($"Collection of books have loaded to file");
         }
         /// <summary>
         /// Save collection of books to storage
@@ -76,6 +82,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
         public void SaveToStorage()
         {
             storage.Save(bookList);
+            logger.Info($"Collection of books have saveed to file");
         }
         /// <summary>
         /// Sorts collection of book by defined tag
@@ -88,6 +95,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Service
                 throw new ArgumentNullException(nameof(comparer));
             }
             bookList.Sort(comparer);
+            logger.Info($"Collection of books have saveed");
         }
 
         /// <summary>

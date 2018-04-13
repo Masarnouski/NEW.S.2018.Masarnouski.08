@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
 {
     public class Book:IComparable, IComparable<Book>, IEquatable<Book> ,IFormattable
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         const string reg = "^(?:ISBN(?:-1[03])?:? )?(?=[-0-9 ]{17}$|[-0-9X ]{13}$|[0-9X]" +
     "{10}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?(?:[0-9]+[- ]?){2}[0-9X]$";
 
@@ -22,6 +24,28 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
         int numberOfPages;
         decimal price;
         #endregion
+
+        /// <summary>
+        /// Initialize a new Book
+        /// </summary>
+        /// <param name="isbn"> The international standard number </param>
+        /// <param name="name"> The title of book </param>
+        /// <param name="author"> The author of book </param>
+        /// <param name="publisher"> The publisher of book </param>
+        /// <param name="year"> The year of publishing </param>
+        /// <param name="numberOfPages"> Amount of pages </param>
+        /// <param name="price"> The price of book </param>
+        public Book(string isbn, string name, string author, string publisher, int year, int numberOfPages, decimal price)
+        {
+            this.Isbn = isbn;
+            this.Name = name;
+            this.Author = author;
+            this.Publisher = publisher;
+            this.Year = year;
+            this.NumberOfPages = numberOfPages;
+            this.Price = price;
+            logger.Info($"Book with name {name} has successfully created");
+        }
 
         #region Properties
         /// <summary>
@@ -157,27 +181,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
         }
 
         #endregion
-        /// <summary>
-        /// Initialize a new Book
-        /// </summary>
-        /// <param name="isbn"> The international standard number </param>
-        /// <param name="name"> The title of book </param>
-        /// <param name="author"> The author of book </param>
-        /// <param name="publisher"> The publisher of book </param>
-        /// <param name="year"> The year of publishing </param>
-        /// <param name="numberOfPages"> Amount of pages </param>
-        /// <param name="price"> The price of book </param>
-        public Book(string isbn, string name, string author, string publisher, int year, int numberOfPages, int price)
-        {
-            this.Isbn = isbn;
-            this.Name = name;
-            this.Author = author;
-            this.Publisher = publisher;
-            this.Year = year;
-            this.NumberOfPages = numberOfPages;
-            this.Price = price;
-
-        }
+      
         /// <summary>
         /// Compares current book with <paramref name="other"/> book>
         /// </summary>

@@ -22,10 +22,19 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
             Book book1 = new Book("ISBN 978-2-93286-181-3", "CLR via C#", "Alesya", "Eversev", 2005, 20, 200);
             Book book2 = new Book("ISBN 978-5-93286-181-3", "CLR via C#2", "Inna", "Eversev", 2006, 200, 200);
             Book book3 = new Book("ISBN 978-4-93286-181-3", "CLR via C#3", "Jenya", "Eversev", 2006, 100, 100);
-
+            
             service.AddBook(book1);
             service.AddBook(book2);
             service.AddBook(book3);
+
+            service.SaveToStorage();
+
+            service.LoadFromStorage();
+
+            service.RemoveBook(book1);
+
+            service.SaveToStorage();
+
 
             CultureInfo culture = new CultureInfo("en-US");
             Console.WriteLine(book1.ToString("IANPYNP", culture));
@@ -40,10 +49,6 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic
 
             PriceFind finder = new PriceFind();
             Book book = service.FindByTag(finder, 200);
-
-            service.SaveToStorage();
-            service.LoadFromStorage();
-
 
         }
 }

@@ -74,7 +74,7 @@ namespace NEW.S._2018.Masarnouski._08.Books.Logic.Storage
                     string author = reader.ReadString();
                     string publisher = reader.ReadString();
                     int numberOfPages = reader.ReadInt32();
-                    int price = reader.ReadInt32();
+                    decimal price = reader.ReadDecimal();
                     int year = reader.ReadInt32();
                     LoadedBookList.Add(new Book(isbn,name, author, publisher, year, numberOfPages, price));
                 }
